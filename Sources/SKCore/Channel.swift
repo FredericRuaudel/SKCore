@@ -30,7 +30,7 @@ public struct Channel: Codable {
     public var isGeneral: Bool?
     public var isChannel: Bool?
     public var isGroup: Bool?
-    public let isIM: Bool?
+    public let isIm: Bool?
     public let isMpim: Bool?
     public var user: String?
     public var isUserDeleted: Bool?
@@ -52,6 +52,11 @@ public struct Channel: Codable {
     @available(*, unavailable, renamed: "isMpim")
     public var isMPIM: Bool? {
         return isMpim
+    }
+    
+    @available(*, unavailable, renamed: "isIm")
+    public var isIM: Bool? {
+        return isIm
     }
     
     @available(*, unavailable, renamed: "unreadCount")
@@ -95,7 +100,7 @@ public struct Channel: Codable {
         creator = nil
         isChannel = true
         isGroup = false
-        isIM = false
+        isIm = false
         isMpim = false
     }
 }

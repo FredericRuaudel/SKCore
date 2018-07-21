@@ -38,14 +38,14 @@ final class SKCoreTests: XCTestCase {
     func testEvents() throws {
         let data = Helper.JSONData.events
         let events = try jsonDecoder.decode([String:Event].self, from: data)
-        dump(events)
+//        dump(events)
         XCTAssertEqual(events.keys.count, eventsKeys.count)
     }
     
     func testChannel() throws {
         let data = Helper.JSONData.channel
         let channelContainer = try jsonDecoder.decode(ChannelContainer.self, from: data)
-        dump(channelContainer.channel)
+//        dump(channelContainer.channel)
         let channel = channelContainer.channel
         XCTAssertNotNil(channel.id)
         XCTAssertNotNil(channel.created)
@@ -65,7 +65,7 @@ final class SKCoreTests: XCTestCase {
     func testConversation() throws {
         let data = Helper.JSONData.conversation
         let channelContainer = try jsonDecoder.decode(ChannelContainer.self, from: data)
-        dump(channelContainer.channel)
+//        dump(channelContainer.channel)
         let channel = channelContainer.channel
         XCTAssertNotNil(channel.id)
         XCTAssertNotNil(channel.created)
@@ -90,7 +90,7 @@ final class SKCoreTests: XCTestCase {
     func testGroup() throws {
         let data = Helper.JSONData.group
         let group = try jsonDecoder.decode(Channel.self, from: data)
-        dump(group)
+//        dump(group)
         XCTAssertNotNil(group.id)
         XCTAssertNotNil(group.created)
         XCTAssertNotNil(group.creator)
@@ -104,13 +104,17 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(group.members)
     }
     
-    //  func testIm() {
-    //    let data = Helper.JSONData.im
-    //    let json:[String:Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-    //    let channel = Channel(channel: json)
-    //    XCTAssertNotNil(channel)
-    //  }
-    //
+    func testIm() throws {
+        let data = Helper.JSONData.im
+        let im = try jsonDecoder.decode(Channel.self, from: data)
+        dump(im)
+        XCTAssertNotNil(im.id)
+        XCTAssertNotNil(im.created)
+        XCTAssertNotNil(im.user)
+        XCTAssertNotNil(im.isIm)
+        XCTAssertNotNil(im.isUserDeleted)
+    }
+    
     //  func testMpim() {
     //    let data = Helper.JSONData.mpim
     //    let json:[String:Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
