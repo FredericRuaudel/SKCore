@@ -55,6 +55,7 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(channel.isChannel)
         XCTAssertNotNil(channel.isGeneral)
         XCTAssertNotNil(channel.isMember)
+        XCTAssertNotNil(channel.isMpim)
         XCTAssertNotNil(channel.lastRead)
         XCTAssertNotNil(channel.unreadCount)
         XCTAssertNotNil(channel.unreadCountDisplay)
