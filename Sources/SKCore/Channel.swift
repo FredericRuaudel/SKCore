@@ -21,68 +21,81 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Channel {
+public struct Channel: Codable {
     public let id: String?
     public let created: Int?
     public let creator: String?
     public var name: String?
     public var isArchived: Bool?
     public var isGeneral: Bool?
-    public let isGroup: Bool?
+    public var isChannel: Bool?
+    public var isGroup: Bool?
     public let isIM: Bool?
-    public let isMPIM: Bool?
+    public let isMpim: Bool?
     public var user: String?
     public var isUserDeleted: Bool?
     public var isOpen: Bool?
-    public var topic: Topic?
-    public var purpose: Topic?
+//    public var topic: Topic?
+//    public var purpose: Topic?
     public var isMember: Bool?
     public var lastRead: String?
-    public var latest: Message?
-    public var unread: Int?
+//    public var latest: Message?
+    public var unreadCount: Int?
     public var unreadCountDisplay: Int?
     public var hasPins: Bool?
     public var members: [String]?
     // Client use
-    public var pinnedItems = [Item]()
-    public var usersTyping = [String]()
-    public var messages = [String: Message]()
+//    public var pinnedItems = [Item]()
+//    public var usersTyping = [String]()
+//    public var messages = [String: Message]()
 
-    public init(channel: [String: Any]?) {
-        id = channel?["id"] as? String
-        name = channel?["name"] as? String
-        created = channel?["created"] as? Int
-        creator = channel?["creator"] as? String
-        isArchived = channel?["is_archived"] as? Bool
-        isGeneral = channel?["is_general"] as? Bool
-        isGroup = channel?["is_group"] as? Bool
-        isIM = channel?["is_im"] as? Bool
-        isMPIM = channel?["is_mpim"] as? Bool
-        isUserDeleted = channel?["is_user_deleted"] as? Bool
-        user = channel?["user"] as? String
-        isOpen = channel?["is_open"] as? Bool
-        topic = Topic(topic: channel?["topic"] as? [String: Any])
-        purpose = Topic(topic: channel?["purpose"] as? [String: Any])
-        isMember = channel?["is_member"] as? Bool
-        lastRead = channel?["last_read"] as? String
-        unread = channel?["unread_count"] as? Int
-        unreadCountDisplay = channel?["unread_count_display"] as? Int
-        hasPins = channel?["has_pins"] as? Bool
-        members = channel?["members"] as? [String]
-
-        if let latestMesssageDictionary = channel?["latest"] as? [String: Any] {
-            latest = Message(dictionary: latestMesssageDictionary)
-        } else {
-            latest = Message(ts: channel?["latest"] as? String)
-        }
+    @available(*, unavailable, renamed: "isMpim")
+    public var isMPIM: Bool? {
+        return isMpim
     }
+    
+    @available(*, unavailable, renamed: "unreadCount")
+    public var unread: Int? {
+        return unreadCount
+    }
+
+    
+//    public init(channel: [String: Any]?) {
+//        id = channel?["id"] as? String
+//        name = channel?["name"] as? String
+//        created = channel?["created"] as? Int
+//        creator = channel?["creator"] as? String
+//        isArchived = channel?["is_archived"] as? Bool
+//        isGeneral = channel?["is_general"] as? Bool
+//        isGroup = channel?["is_group"] as? Bool
+//        isIM = channel?["is_im"] as? Bool
+//        isMPIM = channel?["is_mpim"] as? Bool
+//        isUserDeleted = channel?["is_user_deleted"] as? Bool
+//        user = channel?["user"] as? String
+//        isOpen = channel?["is_open"] as? Bool
+//        topic = Topic(topic: channel?["topic"] as? [String: Any])
+//        purpose = Topic(topic: channel?["purpose"] as? [String: Any])
+//        isMember = channel?["is_member"] as? Bool
+//        lastRead = channel?["last_read"] as? String
+//        unread = channel?["unread_count"] as? Int
+//        unreadCountDisplay = channel?["unread_count_display"] as? Int
+//        hasPins = channel?["has_pins"] as? Bool
+//        members = channel?["members"] as? [String]
+//
+//        if let latestMesssageDictionary = channel?["latest"] as? [String: Any] {
+//            latest = Message(dictionary: latestMesssageDictionary)
+//        } else {
+//            latest = Message(ts: channel?["latest"] as? String)
+//        }
+//    }
 
     public init(id: String?) {
         self.id = id
         created = nil
         creator = nil
+        isChannel = true
         isGroup = false
         isIM = false
-        isMPIM = false
+        isMpim = false
     }
 }
