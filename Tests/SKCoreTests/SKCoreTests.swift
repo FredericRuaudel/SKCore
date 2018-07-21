@@ -25,13 +25,10 @@ import XCTest
 @testable import SKCore
 
 final class SKCoreTests: XCTestCase {
-  
-  
-  func testEvents() {
+  func testEvents() throws {
     let data = Helper.JSONData.events
-    let json:[String:Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-    _ = self.eventsKeys.map { json[$0] as! [String: Any] }.map { Event($0) }
-    
+    let events = try JSONDecoder().decode([String:Event].self, from: data)
+    XCTAssertEqual(events.keys.count, eventsKeys.count)
   }
   
   func testChannel() {
@@ -104,8 +101,8 @@ final class SKCoreTests: XCTestCase {
     // Im Event
     "im_close","im_created","im_marked","im_open", "manual_presence_change",
     // Message Event
-    "message::channel_join", "message::channel_leave", "message::channel_name",
-    "message::group_join", "message::group_name", "message::group_unarchive",
+    "message::channel_archive", "message::channel_join", "message::channel_leave", "message::channel_name",
+    "message::group_archive", "message::group_join", "message::group_leave", "message::group_name", "message::group_unarchive",
     "message::message_changed", "message::message_deleted",
     // Preference Event
     "pref_change", "presence_change",
