@@ -62,12 +62,23 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(channel.members)
     }
     
-    //  func testConversation() {
-    //    let data = Helper.JSONData.conversation
-    //    let json:[String:Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-    //    let channel = Channel(channel: json["channel"] as?[String : Any])
-    //    XCTAssertNotNil(channel)
-    //  }
+    func testConversation() throws {
+        let data = Helper.JSONData.conversation
+        let channelContainer = try jsonDecoder.decode(ChannelContainer.self, from: data)
+        dump(channelContainer.channel)
+        let channel = channelContainer.channel
+        XCTAssertNotNil(channel.id)
+        XCTAssertNotNil(channel.created)
+        XCTAssertNotNil(channel.creator)
+        XCTAssertNotNil(channel.name)
+        XCTAssertNotNil(channel.isArchived)
+        XCTAssertNotNil(channel.isChannel)
+        XCTAssertNotNil(channel.isGeneral)
+        XCTAssertNotNil(channel.isMember)
+        XCTAssertNotNil(channel.lastRead)
+        XCTAssertNotNil(channel.isGroup)
+        XCTAssertNotNil(channel.isMpim)
+    }
     
     func testFile() {
         let data = Helper.JSONData.file
