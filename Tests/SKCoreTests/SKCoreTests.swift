@@ -115,12 +115,21 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(im.isUserDeleted)
     }
     
-    //  func testMpim() {
-    //    let data = Helper.JSONData.mpim
-    //    let json:[String:Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-    //    let channel = Channel(channel: json)
-    //    XCTAssertNotNil(channel)
-    //  }
+    func testMpim() throws {
+        let data = Helper.JSONData.mpim
+        let mpim = try jsonDecoder.decode(Channel.self, from: data)
+        dump(mpim)
+        XCTAssertNotNil(mpim.id)
+        XCTAssertNotNil(mpim.created)
+        XCTAssertNotNil(mpim.creator)
+        XCTAssertNotNil(mpim.name)
+        XCTAssertNotNil(mpim.lastRead)
+        XCTAssertNotNil(mpim.isGroup)
+        XCTAssertNotNil(mpim.isMpim)
+        XCTAssertNotNil(mpim.unreadCount)
+        XCTAssertNotNil(mpim.unreadCountDisplay)
+        XCTAssertNotNil(mpim.members)
+    }
     
     func testUser() {
         let data = Helper.JSONData.user
