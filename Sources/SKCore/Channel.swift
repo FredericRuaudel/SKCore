@@ -45,7 +45,7 @@ public struct Channel: Codable {
     public var hasPins: Bool?
     public var members: [String]?
     // Client use
-//    public var pinnedItems: [Item]? = []
+    public var pinnedItems: [Item]? = []
     public var usersTyping: [String]? = []
     public var messages: [String: Message]? = [:]
 
@@ -63,36 +63,6 @@ public struct Channel: Codable {
     public var unread: Int? {
         return unreadCount
     }
-
-    
-//    public init(channel: [String: Any]?) {
-//        id = channel?["id"] as? String
-//        name = channel?["name"] as? String
-//        created = channel?["created"] as? Int
-//        creator = channel?["creator"] as? String
-//        isArchived = channel?["is_archived"] as? Bool
-//        isGeneral = channel?["is_general"] as? Bool
-//        isGroup = channel?["is_group"] as? Bool
-//        isIM = channel?["is_im"] as? Bool
-//        isMPIM = channel?["is_mpim"] as? Bool
-//        isUserDeleted = channel?["is_user_deleted"] as? Bool
-//        user = channel?["user"] as? String
-//        isOpen = channel?["is_open"] as? Bool
-//        topic = Topic(topic: channel?["topic"] as? [String: Any])
-//        purpose = Topic(topic: channel?["purpose"] as? [String: Any])
-//        isMember = channel?["is_member"] as? Bool
-//        lastRead = channel?["last_read"] as? String
-//        unread = channel?["unread_count"] as? Int
-//        unreadCountDisplay = channel?["unread_count_display"] as? Int
-//        hasPins = channel?["has_pins"] as? Bool
-//        members = channel?["members"] as? [String]
-//
-//        if let latestMesssageDictionary = channel?["latest"] as? [String: Any] {
-//            latest = Message(dictionary: latestMesssageDictionary)
-//        } else {
-//            latest = Message(ts: channel?["latest"] as? String)
-//        }
-//    }
 
     public init(id: String?) {
         self.id = id

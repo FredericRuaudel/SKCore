@@ -21,13 +21,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Item: Equatable {
+public struct Item: Equatable, Codable {
     public let type: String?
     public let ts: String?
     public let channel: String?
     public let message: Message?
     public let file: File?
-    public let comment: Comment?
+//    public let comment: Comment?
     public let fileCommentID: String?
 
 //    public init(item: [String: Any]?) {
@@ -57,7 +57,7 @@ public struct Item: Equatable {
             lhs.type == rhs.type &&
             lhs.channel == rhs.channel &&
             lhs.file == rhs.file &&
-            lhs.comment == rhs.comment &&
+//            lhs.comment == rhs.comment &&
             lhs.message == rhs.message
     }
 }
