@@ -43,5 +43,6 @@ struct Helper {
     static let usergroup        = try! Data(contentsOf: URL(fileURLWithPath: "\(Helper.rootPath)/usergroup.json"))
     static let events           = try! Data(contentsOf: URL(fileURLWithPath: "\(Helper.rootPath)/events.json"))
     static let bot              = try! Data(contentsOf: URL(fileURLWithPath: "\(Helper.rootPath)/bot.json"))
+    static let messages         = try! Data(contentsOf: URL(fileURLWithPath: "\(Helper.rootPath)/messages.json"))
   }
 }

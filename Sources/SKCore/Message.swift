@@ -21,21 +21,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public final class Message: Equatable {
+public final class Message: Equatable, Codable {
     public let type = "message"
     public let subtype: String?
     public var ts: String?
     public var threadTs: String?
     public let parentUserId: String?
     public var replyCount: Int?
-    public var replies: [Reply]?
+//    public var replies: [Reply]?
     public let user: String?
     public let channel: String?
     public var hidden: Bool?
     public var text: String?
-    public let botID: String?
+    public let botId: String?
     public let username: String?
-    public let icons: [String: Any]?
+//    public let icons: [String: Any]?
     public let deletedTs: String?
     public var purpose: String?
     public var topic: String?
@@ -46,13 +46,17 @@ public final class Message: Equatable {
     public let itemType: String?
     public var isStarred: Bool?
     public var pinnedTo: [String]?
-    public let comment: Comment?
+//    public let comment: Comment?
     public let file: File?
-    public var reactions = [Reaction]()
-    public var attachments: [Attachment]?
-    public var responseType: MessageResponseType?
+//    public var reactions = [Reaction]()
+//    public var attachments: [Attachment]?
+//    public var responseType: MessageResponseType?
     public var replaceOriginal: Bool?
     public var deleteOriginal: Bool?
+    @available(*, unavailable, renamed: "botId")
+    public var botID: String? {
+        return botId
+    }
 
 //    public init(dictionary: [String: Any]?) {
 //        subtype = dictionary?["subtype"] as? String
@@ -94,13 +98,13 @@ public final class Message: Equatable {
         subtype = nil
         user = nil
         channel = nil
-        botID = nil
+        botId = nil
         username = nil
-        icons = nil
+//        icons = nil
         deletedTs = nil
         upload = nil
         itemType = nil
-        comment = nil
+//        comment = nil
         file = nil
     }
 

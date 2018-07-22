@@ -32,6 +32,10 @@ struct UserContainer: Codable {
     let user: User
 }
 
+struct MessageListContainer: Codable {
+    let messages: [Message]
+}
+
 final class SKCoreTests: XCTestCase {
     let jsonDecoder = JSONDecoder()
     
@@ -241,6 +245,35 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(bot.icons?.image36)
         XCTAssertNotNil(bot.icons?.image48)
         XCTAssertNotNil(bot.icons?.image72)
+    }
+    
+    func testMessages() throws {
+        let data = Helper.JSONData.messages
+        let messagesContainer = try jsonDecoder.decode(MessageListContainer.self, from: data)
+        let messages = messagesContainer.messages
+        dump(messages)
+        
+        XCTAssertEqual(messages.count, 4)
+        for message in messages {
+            XCTAssertNotNil(message.type)
+            XCTAssertNotNil(message.ts)
+        }
+        
+        let simpleMessage = messages[0]
+        XCTAssertNotNil(simpleMessage.user)
+        XCTAssertNotNil(simpleMessage.text)
+        
+        let messageWithReactions = messages[1]
+        XCTAssertNotNil(messageWithReactions.user)
+        XCTAssertNotNil(messageWithReactions.text)
+        XCTAssertNotNil(messageWithReactions.isStarred)
+        
+        let messageWithAttachments = messages[3]
+        XCTAssertNotNil(messageWithAttachments.username)
+        XCTAssertNotNil(messageWithAttachments.botId)
+        XCTAssertNotNil(messageWithAttachments.subtype)
+        XCTAssertNotNil(messageWithAttachments.text)
+
     }
     
     let eventsKeys = [
