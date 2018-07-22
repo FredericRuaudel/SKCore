@@ -291,6 +291,10 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(messageWithReactions.user)
         XCTAssertNotNil(messageWithReactions.text)
         XCTAssertNotNil(messageWithReactions.isStarred)
+        XCTAssertNotNil(messageWithReactions.reactions?.first?.name)
+        XCTAssertNotNil(messageWithReactions.reactions?.first?.users)
+        XCTAssertEqual(messageWithReactions.reactions?.count, 2)
+        XCTAssertEqual(messageWithReactions.reactions?.first?.users?.count, 3)
         
         let messageWithAttachments = messages[3]
         XCTAssertNotNil(messageWithAttachments.username)

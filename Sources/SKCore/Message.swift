@@ -46,9 +46,9 @@ public final class Message: Equatable, Codable {
     public let itemType: String?
     public var isStarred: Bool?
     public var pinnedTo: [String]?
-//    public let comment: Comment?
+    public let comment: Comment?
     public let file: File?
-//    public var reactions = [Reaction]()
+    public var reactions: [Reaction]? = []
 //    public var attachments: [Attachment]?
 //    public var responseType: MessageResponseType?
     public var replaceOriginal: Bool?
@@ -104,7 +104,7 @@ public final class Message: Equatable, Codable {
         deletedTs = nil
         upload = nil
         itemType = nil
-//        comment = nil
+        comment = nil
         file = nil
     }
 
