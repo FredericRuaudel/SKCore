@@ -218,6 +218,9 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(user.isPrimaryOwner)
         XCTAssertNotNil(user.isRestricted)
         XCTAssertNotNil(user.isUltraRestricted)
+        XCTAssertNotNil(user.timeZone)
+        XCTAssertNotNil(user.timeZoneLabel)
+        XCTAssertNotNil(user.timeZoneOffSet)
     }
     
     func testUserGroup() throws {

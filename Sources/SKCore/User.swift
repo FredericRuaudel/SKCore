@@ -33,6 +33,7 @@ public struct User: Codable {
         public var image48: String?
         public var image72: String?
         public var image192: String?
+        public var image512: String?
 //        public var customProfile: CustomProfile?
 
 //        public init(profile: [String: Any]?) {
@@ -98,5 +99,29 @@ public struct User: Codable {
     public init(id: String?) {
         self.id = id
         self.isBot = nil
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case deleted
+        case profile
+        case doNotDisturbStatus
+        case presence
+        case color
+        case isBot
+        case isAdmin
+        case isOwner
+        case isPrimaryOwner
+        case isRestricted
+        case isUltraRestricted
+        case has2fa
+        case hasFiles
+        case status
+        case timeZone = "tz"
+        case timeZoneLabel = "tzLabel"
+        case timeZoneOffSet = "tzOffset"
+//        case preferences
+        case userGroups
     }
 }
