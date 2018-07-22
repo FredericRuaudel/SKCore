@@ -24,9 +24,4 @@
 public struct Edited: Codable {
     public let user: String?
     public let ts: String?
-
-    public init(edited: [String: Any]?) {
-        user = edited?["user"] as? String
-        ts = edited?["ts"] as? String
-    }
 }
