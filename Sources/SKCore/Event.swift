@@ -150,9 +150,36 @@ public class Event: Codable {
     public let reactions: [Reaction]?
     public let edited: Edited?
     public let bot: Bot?
-    public let channel: Expandable<Channel>?
-    public let comment: Comment?
-    public let user: Expandable<User>?
+    public let expandableChannel: Expandable<Channel>?
+    public var channel: Channel? {
+        guard let expandableChannel = expandableChannel else { return nil }
+        switch expandableChannel {
+        case let .left(id):
+            return Channel(id: id)
+        case let .right(channel):
+            return channel
+        }
+    }
+    public let expandableComment: Expandable<Comment>?
+    public var comment: Comment? {
+        guard let expandableComment = expandableComment else { return nil }
+        switch expandableComment {
+        case let .left(id):
+            return Comment(id: id)
+        case let .right(comment):
+            return comment
+        }
+    }
+    public let expandableUser: Expandable<User>?
+    public var user: User? {
+        guard let expandableUser = expandableUser else { return nil }
+        switch expandableUser {
+        case let .left(id):
+            return User(id: id)
+        case let .right(user):
+            return user
+        }
+    }
     public let file: File?
     public let message: Message?
     public let nestedMessage: Message?
@@ -162,4 +189,43 @@ public class Event: Codable {
     public let subteam: UserGroup?
     public let subteamID: String?
 //    public var profile: CustomProfile?
+    
+    enum CodingKeys: String, CodingKey {
+        case type
+        case ts
+        case subtype
+        case channelID = "channelId"
+        case text
+        case eventTs
+        case latest
+        case hidden
+        case isStarred
+        case hasPins
+        case pinnedTo = "pinnedTop"
+        case fileID = "fileId"
+        case presence
+        case name
+//        case value
+        case plan
+        case url
+        case domain
+        case emailDomain
+        case reaction
+        case replyTo
+        case reactions
+        case edited
+        case bot
+        case expandableChannel = "channel"
+        case expandableComment = "comment"
+        case expandableUser = "user"
+        case file
+        case message
+        case nestedMessage
+        case itemUser
+        case item
+        case dndStatus
+        case subteam
+        case subteamID = "subteamId"
+//        case profile
+    }
 }
