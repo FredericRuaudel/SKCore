@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct UserGroup: Decodable {
+public struct UserGroup: Codable {
     public let id: String?
     public var teamID: String?
     public let isUserGroup: Bool?

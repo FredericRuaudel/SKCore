@@ -159,7 +159,7 @@ public class Event: Codable {
     public let itemUser: String?
 //    public let item: Item?
     public let dndStatus: DoNotDisturbStatus?
-//    public let subteam: UserGroup?
+    public let subteam: UserGroup?
     public let subteamID: String?
 //    public var profile: CustomProfile?
 }
