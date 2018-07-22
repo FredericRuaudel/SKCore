@@ -132,8 +132,8 @@ public struct File: Equatable, Codable {
         case created
         case name
         case title
-        case mimeType
-        case fileType
+        case mimeType = "mimetype"
+        case fileType = "filetype"
         case prettyType
         case user
         case mode
@@ -172,12 +172,12 @@ public struct File: Equatable, Codable {
         case lines
         case linesMore
         case isPublic
-        case publicSharedURL
+        case publicSharedURL = "public_url_shared"
         case channels
         case groups
         case ims
         case initialComment
-        case stars
+        case stars = "num_stars"
         case isStarred
         case pinnedTo
         case comments
