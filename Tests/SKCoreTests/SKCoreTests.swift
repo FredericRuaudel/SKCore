@@ -178,9 +178,9 @@ final class SKCoreTests: XCTestCase {
         ("testChannel", testChannel),
         ("testConversation", testConversation),
         ("testFile", testFile),
-        //    ("testGroup", testGroup),
-        //    ("testIm", testIm),
-        //    ("TestMpim", testMpim),
+        ("testGroup", testGroup),
+        ("testIm", testIm),
+        ("TestMpim", testMpim),
         ("testUser", testUser),
         ("testUserGroup", testUserGroup),
         ("testEvents",testEvents)
