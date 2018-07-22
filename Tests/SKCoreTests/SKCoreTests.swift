@@ -74,6 +74,12 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(channel.purpose?.value)
         XCTAssertNotNil(channel.purpose?.creator)
         XCTAssertNotNil(channel.purpose?.lastSet)
+        XCTAssertNotNil(channel.latest?.text)
+        XCTAssertNotNil(channel.latest?.username)
+        XCTAssertNotNil(channel.latest?.botId)
+        XCTAssertNotNil(channel.latest?.type)
+        XCTAssertNotNil(channel.latest?.subtype)
+        XCTAssertNotNil(channel.latest?.ts)
     }
     
     func testConversation() throws {

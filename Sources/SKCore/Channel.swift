@@ -39,15 +39,15 @@ public struct Channel: Codable {
     public var purpose: Topic?
     public var isMember: Bool?
     public var lastRead: String?
-//    public var latest: Message?
+    public var latest: Message?
     public var unreadCount: Int?
     public var unreadCountDisplay: Int?
     public var hasPins: Bool?
     public var members: [String]?
     // Client use
-//    public var pinnedItems = [Item]()
-//    public var usersTyping = [String]()
-//    public var messages = [String: Message]()
+//    public var pinnedItems: [Item]? = []
+    public var usersTyping: [String]? = []
+    public var messages: [String: Message]? = [:]
 
     @available(*, unavailable, renamed: "isMpim")
     public var isMPIM: Bool? {
