@@ -28,15 +28,15 @@ public struct History {
     public var messages = [Message]()
     public let hasMore: Bool?
 
-    public init(history: [String: Any]?) {
-        if let latestStr = history?["latest"] as? String, let latestDouble = Double(latestStr) {
-            latest = Date(timeIntervalSince1970: TimeInterval(latestDouble))
-        }
-        if let msgs = history?["messages"] as? [[String: Any]] {
-            for message in msgs {
-                messages.append(Message(dictionary: message))
-            }
-        }
-        hasMore = history?["has_more"] as? Bool
-    }
+//    public init(history: [String: Any]?) {
+//        if let latestStr = history?["latest"] as? String, let latestDouble = Double(latestStr) {
+//            latest = Date(timeIntervalSince1970: TimeInterval(latestDouble))
+//        }
+//        if let msgs = history?["messages"] as? [[String: Any]] {
+//            for message in msgs {
+//                messages.append(Message(dictionary: message))
+//            }
+//        }
+//        hasMore = history?["has_more"] as? Bool
+//    }
 }

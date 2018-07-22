@@ -80,11 +80,44 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(channel.isMpim)
     }
     
-    func testFile() {
+    func testFile() throws {
         let data = Helper.JSONData.file
-        let json:[String:Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-        let file = File(file: json)
-        XCTAssertNotNil(file)
+        let file = try jsonDecoder.decode(File.self, from: data)
+        dump(file)
+        XCTAssertNotNil(file.id)
+        XCTAssertNotNil(file.created)
+        XCTAssertNotNil(file.name)
+        XCTAssertNotNil(file.title)
+        XCTAssertNotNil(file.prettyType)
+        XCTAssertNotNil(file.user)
+        XCTAssertNotNil(file.mode)
+        XCTAssertNotNil(file.editable)
+        XCTAssertNotNil(file.isExternal)
+        XCTAssertNotNil(file.externalType)
+        XCTAssertNotNil(file.size)
+        XCTAssertNotNil(file.urlPrivate)
+        XCTAssertNotNil(file.urlPrivateDownload)
+        XCTAssertNotNil(file.thumb64)
+        XCTAssertNotNil(file.thumb80)
+        XCTAssertNotNil(file.thumb360)
+        XCTAssertNotNil(file.thumb360gif)
+        XCTAssertNotNil(file.thumb360w)
+        XCTAssertNotNil(file.thumb360h)
+        XCTAssertNotNil(file.thumb480)
+        XCTAssertNotNil(file.thumb480w)
+        XCTAssertNotNil(file.thumb480h)
+        XCTAssertNotNil(file.permalink)
+        XCTAssertNotNil(file.editLink)
+        XCTAssertNotNil(file.preview)
+        XCTAssertNotNil(file.previewHighlight)
+        XCTAssertNotNil(file.lines)
+        XCTAssertNotNil(file.linesMore)
+        XCTAssertNotNil(file.isPublic)
+        XCTAssertNotNil(file.channels)
+        XCTAssertNotNil(file.groups)
+        XCTAssertNotNil(file.ims)
+        XCTAssertNotNil(file.isStarred)
+        XCTAssertNotNil(file.pinnedTo)
     }
     
     func testGroup() throws {

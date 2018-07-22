@@ -54,38 +54,38 @@ public final class Message: Equatable {
     public var replaceOriginal: Bool?
     public var deleteOriginal: Bool?
 
-    public init(dictionary: [String: Any]?) {
-        subtype = dictionary?["subtype"] as? String
-        ts = dictionary?["ts"] as? String
-        threadTs = dictionary?["thread_ts"] as? String
-        parentUserId = dictionary?["parent_user_id"] as? String
-        replyCount = dictionary?["reply_count"] as? Int
-        replies = (dictionary?["replies"] as? [[String: Any]])?.map({ Reply(reply: $0) })
-        user = dictionary?["user"] as? String
-        channel = dictionary?["channel"] as? String
-        hidden = dictionary?["hidden"] as? Bool
-        text = dictionary?["text"] as? String
-        botID = dictionary?["bot_id"] as? String
-        username = dictionary?["username"] as? String
-        icons = dictionary?["icons"] as? [String: Any]
-        deletedTs = dictionary?["deleted_ts"] as? String
-        purpose = dictionary?["purpose"] as? String
-        topic = dictionary?["topic"] as? String
-        name = dictionary?["name"] as? String
-        members = dictionary?["members"] as? [String]
-        oldName = dictionary?["old_name"] as? String
-        upload = dictionary?["upload"] as? Bool
-        itemType = dictionary?["item_type"] as? String
-        isStarred = dictionary?["is_starred"] as? Bool
-        pinnedTo = dictionary?["pinned_to"] as? [String]
-        comment = Comment(comment: dictionary?["comment"] as? [String: Any])
-        file = File(file: dictionary?["file"] as? [String: Any])
-        reactions = Reaction.reactionsFromArray(dictionary?["reactions"] as? [[String: Any]])
-        attachments = (dictionary?["attachments"] as? [[String: Any]])?.map { Attachment(attachment: $0) }
-        responseType = MessageResponseType(rawValue: dictionary?["response_type"] as? String ?? "")
-        replaceOriginal = dictionary?["replace_original"] as? Bool
-        deleteOriginal = dictionary?["delete_original"] as? Bool
-    }
+//    public init(dictionary: [String: Any]?) {
+//        subtype = dictionary?["subtype"] as? String
+//        ts = dictionary?["ts"] as? String
+//        threadTs = dictionary?["thread_ts"] as? String
+//        parentUserId = dictionary?["parent_user_id"] as? String
+//        replyCount = dictionary?["reply_count"] as? Int
+//        replies = (dictionary?["replies"] as? [[String: Any]])?.map({ Reply(reply: $0) })
+//        user = dictionary?["user"] as? String
+//        channel = dictionary?["channel"] as? String
+//        hidden = dictionary?["hidden"] as? Bool
+//        text = dictionary?["text"] as? String
+//        botID = dictionary?["bot_id"] as? String
+//        username = dictionary?["username"] as? String
+//        icons = dictionary?["icons"] as? [String: Any]
+//        deletedTs = dictionary?["deleted_ts"] as? String
+//        purpose = dictionary?["purpose"] as? String
+//        topic = dictionary?["topic"] as? String
+//        name = dictionary?["name"] as? String
+//        members = dictionary?["members"] as? [String]
+//        oldName = dictionary?["old_name"] as? String
+//        upload = dictionary?["upload"] as? Bool
+//        itemType = dictionary?["item_type"] as? String
+//        isStarred = dictionary?["is_starred"] as? Bool
+//        pinnedTo = dictionary?["pinned_to"] as? [String]
+//        comment = Comment(comment: dictionary?["comment"] as? [String: Any])
+//        file = File(file: dictionary?["file"] as? [String: Any])
+//        reactions = Reaction.reactionsFromArray(dictionary?["reactions"] as? [[String: Any]])
+//        attachments = (dictionary?["attachments"] as? [[String: Any]])?.map { Attachment(attachment: $0) }
+//        responseType = MessageResponseType(rawValue: dictionary?["response_type"] as? String ?? "")
+//        replaceOriginal = dictionary?["replace_original"] as? Bool
+//        deleteOriginal = dictionary?["delete_original"] as? Bool
+//    }
 
     public init(ts: String?) {
         self.ts = ts
