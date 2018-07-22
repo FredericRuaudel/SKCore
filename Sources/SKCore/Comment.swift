@@ -21,24 +21,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Comment: Equatable {
+public struct Comment: Equatable, Codable {
     public let id: String?
     public let user: String?
     public var created: Int?
     public var comment: String?
     public var starred: Bool?
     public var stars: Int?
-    public var reactions = [Reaction]()
-
-    public init(comment: [String: Any]?) {
-        self.comment = comment?["comment"] as? String
-        id = comment?["id"] as? String
-        created = comment?["created"] as? Int
-        user = comment?["user"] as? String
-        starred = comment?["is_starred"] as? Bool
-        stars = comment?["num_stars"] as? Int
-        reactions = Reaction.reactionsFromArray(comment?["reactions"] as? [[String: Any]])
-    }
+    public var reactions: [Reaction]? = []
 
     public init(id: String?) {
         self.id = id
