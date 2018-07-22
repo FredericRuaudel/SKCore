@@ -27,13 +27,26 @@ public struct Bot: Codable {
         public let image48: String?
         public let image72: String?
     }
-    public let id: String?
+    public var id: String? {
+        if let botId = botId {
+            return botId
+        } else if let botUserId = botUserId {
+            return botUserId
+        } else {
+            return nil
+        }
+    }
+    private let botId: String?
+    private let botUserId: String?
     public var botToken: String?
     public var name: String?
     public var icons: Icons?
-
-//    public init(botUser: [String: Any]?) {
-//        id = botUser?["bot_user_id"] as? String
-//        botToken = botUser?["bot_access_token"] as? String
-//    }
+    
+    enum CodingKeys: String, CodingKey {
+        case botId = "id"
+        case botUserId
+        case botToken = "bot_access_token"
+        case name
+        case icons
+    }
 }
