@@ -21,6 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+public typealias UserOrUserId = Either<User, String>
+
 public enum EventType: String, Codable {
     case hello = "hello"
     case message = "message"
@@ -153,13 +155,13 @@ public class Event: Codable {
 //    public let channel: Channel?
 //    public let comment: Comment?
 //    public let user: User?
-//    public let file: File?
-//    public let message: Message?
-//    public let nestedMessage: Message?
-//    public let itemUser: String?
+    public let file: File?
+    public let message: Message?
+    public let nestedMessage: Message?
+    public let itemUser: String?
 //    public let item: Item?
-//    public let dndStatus: DoNotDisturbStatus?
+    public let dndStatus: DoNotDisturbStatus?
 //    public let subteam: UserGroup?
-//    public let subteamID: String?
+    public let subteamID: String?
 //    public var profile: CustomProfile?
 }
