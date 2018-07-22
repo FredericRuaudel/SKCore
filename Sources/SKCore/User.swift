@@ -121,7 +121,7 @@ public struct User: Codable {
         case timeZone = "tz"
         case timeZoneLabel = "tzLabel"
         case timeZoneOffSet = "tzOffset"
-//        case preferences
+//        case preferences = "prefs"
         case userGroups
     }
 }

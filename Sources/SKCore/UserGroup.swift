@@ -81,7 +81,7 @@ public struct UserGroup: Codable {
         case createdBy
         case updatedBy
         case deletedBy
-//        case preferences
+//        case preferences = "prefs"
         case users
         case rawUserCount = "userCount"
     }
