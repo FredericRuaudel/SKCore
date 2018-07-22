@@ -150,7 +150,7 @@ public class Event: Codable {
 //    public let reactions: [[String: Any]]?
 //    public let edited: Edited?
 //    public let bot: Bot?
-//    public let channel: Channel?
+    public let channel: Expandable<Channel>?
 //    public let comment: Comment?
     public let user: Expandable<User>?
     public let file: File?
