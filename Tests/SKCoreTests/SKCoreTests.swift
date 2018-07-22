@@ -109,7 +109,7 @@ final class SKCoreTests: XCTestCase {
     func testFile() throws {
         let data = Helper.JSONData.file
         let file = try jsonDecoder.decode(File.self, from: data)
-//        dump(file)
+        dump(file)
         XCTAssertNotNil(file.id)
         XCTAssertNotNil(file.created)
         XCTAssertNotNil(file.name)
@@ -144,6 +144,21 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(file.ims)
         XCTAssertNotNil(file.isStarred)
         XCTAssertNotNil(file.pinnedTo)
+        XCTAssertNotNil(file.initialComment?.id)
+        XCTAssertNotNil(file.initialComment?.created)
+        XCTAssertNotNil(file.initialComment?.user)
+        XCTAssertNotNil(file.initialComment?.comment)
+        XCTAssertNotNil(file.initialComment?.reactions?.first?.name)
+        XCTAssertNotNil(file.initialComment?.reactions?.first?.users)
+        XCTAssertEqual(file.initialComment?.reactions?.count, 1)
+        XCTAssertEqual(file.initialComment?.reactions?.first?.users?.count, 1)
+        XCTAssertNotNil(file.reactions?.first?.name)
+        XCTAssertNotNil(file.reactions?.first?.users)
+        XCTAssertEqual(file.reactions?.count, 2)
+        XCTAssertEqual(file.reactions?.first?.users?.count, 3)
+        XCTAssertNotNil(file.reactions?[1].name)
+        XCTAssertNotNil(file.reactions?[1].users)
+        XCTAssertEqual(file.reactions?[1].users?.count, 5)
     }
     
     func testGroup() throws {
