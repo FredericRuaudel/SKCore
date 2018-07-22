@@ -30,8 +30,8 @@ public struct Channel: Codable {
     public var isGeneral: Bool?
     public var isChannel: Bool?
     public var isGroup: Bool?
-    public let isIm: Bool?
-    public let isMpim: Bool?
+    public let isIM: Bool?
+    public let isMPIM: Bool?
     public var user: String?
     public var isUserDeleted: Bool?
     public var isOpen: Bool?
@@ -39,7 +39,16 @@ public struct Channel: Codable {
     public var purpose: Topic?
     public var isMember: Bool?
     public var lastRead: String?
-    public var latest: Message?
+    public var expandableLatest: Expandable<Message>?
+    public var latest: Message? {
+        guard let expandableLatest = expandableLatest else { return nil }
+        switch expandableLatest {
+        case let .left(ts):
+            return Message(ts: ts)
+        case let .right(message):
+            return message
+        }
+    }
     public var unreadCount: Int?
     public var unreadCountDisplay: Int?
     public var hasPins: Bool?
@@ -49,16 +58,6 @@ public struct Channel: Codable {
     public var usersTyping: [String]? = []
     public var messages: [String: Message]? = [:]
 
-    @available(*, unavailable, renamed: "isMpim")
-    public var isMPIM: Bool? {
-        return isMpim
-    }
-    
-    @available(*, unavailable, renamed: "isIm")
-    public var isIM: Bool? {
-        return isIm
-    }
-    
     @available(*, unavailable, renamed: "unreadCount")
     public var unread: Int? {
         return unreadCount
@@ -70,7 +69,35 @@ public struct Channel: Codable {
         creator = nil
         isChannel = true
         isGroup = false
-        isIm = false
-        isMpim = false
+        isIM = false
+        isMPIM = false
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case created
+        case creator
+        case name
+        case isArchived
+        case isGeneral
+        case isChannel
+        case isGroup
+        case isIM = "isIm"
+        case isMPIM = "isMpim"
+        case user
+        case isUserDeleted
+        case isOpen
+        case topic
+        case purpose
+        case isMember
+        case lastRead
+        case expandableLatest = "latest"
+        case unreadCount
+        case unreadCountDisplay
+        case hasPins
+        case members
+        case pinnedItems
+        case usersTyping
+        case messages
     }
 }
