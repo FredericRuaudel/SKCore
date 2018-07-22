@@ -21,20 +21,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Bot {
+public struct Bot: Codable {
+    public struct Icons: Codable {
+        public let image36: String?
+        public let image48: String?
+        public let image72: String?
+    }
     public let id: String?
     public var botToken: String?
     public var name: String?
-    public var icons: [String: Any]?
+    public var icons: Icons?
 
-    public init(bot: [String: Any]?) {
-        id = bot?["id"] as? String
-        name = bot?["name"] as? String
-        icons = bot?["icons"] as? [String: Any]
-    }
+//    public init(bot: [String: Any]?) {
+//        id = bot?["id"] as? String
+//        name = bot?["name"] as? String
+//        icons = bot?["icons"] as? [String: Any]
+//    }
 
-    public init(botUser: [String: Any]?) {
-        id = botUser?["bot_user_id"] as? String
-        botToken = botUser?["bot_access_token"] as? String
-    }
+//    public init(botUser: [String: Any]?) {
+//        id = botUser?["bot_user_id"] as? String
+//        botToken = botUser?["bot_access_token"] as? String
+//    }
 }

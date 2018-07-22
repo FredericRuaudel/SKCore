@@ -195,7 +195,7 @@ final class SKCoreTests: XCTestCase {
     func testUserGroup() throws {
         let data = Helper.JSONData.usergroup
         let userGroup = try jsonDecoder.decode(UserGroup.self, from: data)
-        dump(userGroup)
+//        dump(userGroup)
         XCTAssertNotNil(userGroup.id)
         XCTAssertNotNil(userGroup.teamID)
         XCTAssertNotNil(userGroup.isUserGroup)
@@ -212,6 +212,17 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(userGroup.users)
         XCTAssertNotNil(userGroup.userCount)
         XCTAssertEqual(userGroup.users?.count, userGroup.userCount)
+    }
+    
+    func testBot() throws {
+        let data = Helper.JSONData.bot
+        let bot = try jsonDecoder.decode(Bot.self, from: data)
+        dump(bot)
+        XCTAssertNotNil(bot.id)
+        XCTAssertNotNil(bot.name)
+        XCTAssertNotNil(bot.icons?.image36)
+        XCTAssertNotNil(bot.icons?.image48)
+        XCTAssertNotNil(bot.icons?.image72)
     }
     
     let eventsKeys = [

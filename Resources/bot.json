@@ -1,0 +1,13 @@
+{
+    "id": "BBLU6CWV8",
+    "deleted": false,
+    "name": "bot",
+    "updated": 1531111669,
+    "app_id": "A0F7YS25R",
+    "user_id": "UBLR59ZU3",
+    "icons": {
+        "image_36": "https:\/\/cfr.slack-edge.com\/7f1a0\/plugins\/bot\/assets\/service_36.png",
+        "image_48": "https:\/\/cfr.slack-edge.com\/7f1a0\/plugins\/bot\/assets\/service_48.png",
+        "image_72": "https:\/\/cfr.slack-edge.com\/7f1a0\/plugins\/bot\/assets\/service_72.png"
+    }
+}
