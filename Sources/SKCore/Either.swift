@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias Expandable<M> = Either<String, M>
+
 public enum Either<L, R> {
     case left(L)
     case right(R)
