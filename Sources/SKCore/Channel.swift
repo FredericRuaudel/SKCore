@@ -35,8 +35,8 @@ public struct Channel: Codable {
     public var user: String?
     public var isUserDeleted: Bool?
     public var isOpen: Bool?
-//    public var topic: Topic?
-//    public var purpose: Topic?
+    public var topic: Topic?
+    public var purpose: Topic?
     public var isMember: Bool?
     public var lastRead: String?
 //    public var latest: Message?

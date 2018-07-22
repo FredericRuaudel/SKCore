@@ -21,14 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Topic {
+public struct Topic: Codable {
     public let value: String?
     public let creator: String?
     public let lastSet: Int?
-
-    public init(topic: [String: Any]?) {
-        value = topic?["value"] as? String
-        creator = topic?["creator"] as? String
-        lastSet = topic?["last_set"] as? Int
-    }
 }

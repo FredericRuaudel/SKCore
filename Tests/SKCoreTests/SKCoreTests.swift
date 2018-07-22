@@ -64,24 +64,36 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(channel.unreadCount)
         XCTAssertNotNil(channel.unreadCountDisplay)
         XCTAssertNotNil(channel.members)
+        XCTAssertNotNil(channel.topic?.value)
+        XCTAssertNotNil(channel.topic?.creator)
+        XCTAssertNotNil(channel.topic?.lastSet)
+        XCTAssertNotNil(channel.purpose?.value)
+        XCTAssertNotNil(channel.purpose?.creator)
+        XCTAssertNotNil(channel.purpose?.lastSet)
     }
     
     func testConversation() throws {
         let data = Helper.JSONData.conversation
-        let channelContainer = try jsonDecoder.decode(ChannelContainer.self, from: data)
-//        dump(channelContainer.channel)
-        let channel = channelContainer.channel
-        XCTAssertNotNil(channel.id)
-        XCTAssertNotNil(channel.created)
-        XCTAssertNotNil(channel.creator)
-        XCTAssertNotNil(channel.name)
-        XCTAssertNotNil(channel.isArchived)
-        XCTAssertNotNil(channel.isChannel)
-        XCTAssertNotNil(channel.isGeneral)
-        XCTAssertNotNil(channel.isMember)
-        XCTAssertNotNil(channel.lastRead)
-        XCTAssertNotNil(channel.isGroup)
-        XCTAssertNotNil(channel.isMpim)
+        let conversationContainer = try jsonDecoder.decode(ChannelContainer.self, from: data)
+        let conversation = conversationContainer.channel
+//        dump(conversation)
+        XCTAssertNotNil(conversation.id)
+        XCTAssertNotNil(conversation.created)
+        XCTAssertNotNil(conversation.creator)
+        XCTAssertNotNil(conversation.name)
+        XCTAssertNotNil(conversation.isArchived)
+        XCTAssertNotNil(conversation.isChannel)
+        XCTAssertNotNil(conversation.isGeneral)
+        XCTAssertNotNil(conversation.isMember)
+        XCTAssertNotNil(conversation.lastRead)
+        XCTAssertNotNil(conversation.isGroup)
+        XCTAssertNotNil(conversation.isMpim)
+        XCTAssertNotNil(conversation.topic?.value)
+        XCTAssertNotNil(conversation.topic?.creator)
+        XCTAssertNotNil(conversation.topic?.lastSet)
+        XCTAssertNotNil(conversation.purpose?.value)
+        XCTAssertNotNil(conversation.purpose?.creator)
+        XCTAssertNotNil(conversation.purpose?.lastSet)
     }
     
     func testFile() throws {
@@ -139,6 +151,12 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(group.unreadCount)
         XCTAssertNotNil(group.unreadCountDisplay)
         XCTAssertNotNil(group.members)
+        XCTAssertNotNil(group.topic?.value)
+        XCTAssertNotNil(group.topic?.creator)
+        XCTAssertNotNil(group.topic?.lastSet)
+        XCTAssertNotNil(group.purpose?.value)
+        XCTAssertNotNil(group.purpose?.creator)
+        XCTAssertNotNil(group.purpose?.lastSet)
     }
     
     func testIm() throws {
@@ -217,7 +235,7 @@ final class SKCoreTests: XCTestCase {
     func testBot() throws {
         let data = Helper.JSONData.bot
         let bot = try jsonDecoder.decode(Bot.self, from: data)
-        dump(bot)
+//        dump(bot)
         XCTAssertNotNil(bot.id)
         XCTAssertNotNil(bot.name)
         XCTAssertNotNil(bot.icons?.image36)
