@@ -38,4 +38,14 @@ public struct Comment: Equatable, Codable {
     public static func == (lhs: Comment, rhs: Comment) -> Bool {
         return lhs.id == rhs.id
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case user
+        case created
+        case comment
+        case starred = "is_starred"
+        case stars = "num_stars"
+        case reactions
+    }
 }
