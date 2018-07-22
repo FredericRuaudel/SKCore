@@ -172,7 +172,7 @@ final class SKCoreTests: XCTestCase {
         let data = Helper.JSONData.user
         let userContainer = try jsonDecoder.decode(UserContainer.self, from: data)
         let user = userContainer.user
-        dump(user)
+//        dump(user)
         XCTAssertNotNil(user.id)
         XCTAssertNotNil(user.name)
         XCTAssertNotNil(user.deleted)
@@ -192,11 +192,26 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(user.isUltraRestricted)
     }
     
-    func testUserGroup() {
+    func testUserGroup() throws {
         let data = Helper.JSONData.usergroup
-        let json:[String:Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-        let userGroup = UserGroup(userGroup: json)
-        XCTAssertNotNil(userGroup)
+        let userGroup = try jsonDecoder.decode(UserGroup.self, from: data)
+        dump(userGroup)
+        XCTAssertNotNil(userGroup.id)
+        XCTAssertNotNil(userGroup.teamID)
+        XCTAssertNotNil(userGroup.isUserGroup)
+        XCTAssertNotNil(userGroup.name)
+        XCTAssertNotNil(userGroup.description)
+        XCTAssertNotNil(userGroup.handle)
+        XCTAssertNotNil(userGroup.isExternal)
+        XCTAssertNotNil(userGroup.dateCreated)
+        XCTAssertNotNil(userGroup.dateUpdated)
+        XCTAssertNotNil(userGroup.dateDeleted)
+        XCTAssertNotNil(userGroup.autoType)
+        XCTAssertNotNil(userGroup.createdBy)
+        XCTAssertNotNil(userGroup.updatedBy)
+        XCTAssertNotNil(userGroup.users)
+        XCTAssertNotNil(userGroup.userCount)
+        XCTAssertEqual(userGroup.users?.count, userGroup.userCount)
     }
     
     let eventsKeys = [

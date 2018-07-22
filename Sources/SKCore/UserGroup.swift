@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct UserGroup {
+public struct UserGroup: Decodable {
     public let id: String?
     public var teamID: String?
     public let isUserGroup: Bool?
@@ -36,29 +36,53 @@ public struct UserGroup {
     public let createdBy: String?
     public var updatedBy: String?
     public var deletedBy: String?
-    public var preferences: [String: Any]?
+//    public var preferences: [String: Any]?
     public var users: [String]?
-    public var userCount: Int?
+    public var rawUserCount: String?
+    public var userCount: Int? {
+        guard let rawUserCount = rawUserCount else { return nil }
+        return Int(rawUserCount)
+    }
 
-    public init(userGroup: [String: Any]?) {
-        id = userGroup?["id"] as? String
-        teamID = userGroup?["team_id"] as? String
-        isUserGroup = userGroup?["is_usergroup"] as? Bool
-        name = userGroup?["name"] as? String
-        description = userGroup?["description"] as? String
-        handle = userGroup?["handle"] as? String
-        isExternal = userGroup?["is_external"] as? Bool
-        dateCreated = userGroup?["date_create"] as? Int
-        dateUpdated = userGroup?["date_update"] as? Int
-        dateDeleted = userGroup?["date_delete"] as? Int
-        autoType = userGroup?["auto_type"] as? String
-        createdBy = userGroup?["created_by"] as? String
-        updatedBy = userGroup?["updated_by"] as? String
-        deletedBy = userGroup?["deleted_by"] as? String
-        preferences = userGroup?["prefs"] as? [String: Any]
-        users = userGroup?["users"] as? [String]
-        if let count = userGroup?["user_count"] as? String {
-            userCount = Int(count)
-        }
+//    public init(userGroup: [String: Any]?) {
+//        id = userGroup?["id"] as? String
+//        teamID = userGroup?["team_id"] as? String
+//        isUserGroup = userGroup?["is_usergroup"] as? Bool
+//        name = userGroup?["name"] as? String
+//        description = userGroup?["description"] as? String
+//        handle = userGroup?["handle"] as? String
+//        isExternal = userGroup?["is_external"] as? Bool
+//        dateCreated = userGroup?["date_create"] as? Int
+//        dateUpdated = userGroup?["date_update"] as? Int
+//        dateDeleted = userGroup?["date_delete"] as? Int
+//        autoType = userGroup?["auto_type"] as? String
+//        createdBy = userGroup?["created_by"] as? String
+//        updatedBy = userGroup?["updated_by"] as? String
+//        deletedBy = userGroup?["deleted_by"] as? String
+//        preferences = userGroup?["prefs"] as? [String: Any]
+//        users = userGroup?["users"] as? [String]
+//        if let count = userGroup?["user_count"] as? String {
+//            userCount = Int(count)
+//        }
+//    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case teamID = "teamId"
+        case isUserGroup = "isUsergroup"
+        case name
+        case description
+        case handle
+        case isExternal
+        case dateCreated = "dateCreate"
+        case dateUpdated = "dateUpdate"
+        case dateDeleted = "dateDelete"
+        case autoType
+        case createdBy
+        case updatedBy
+        case deletedBy
+//        case preferences
+        case users
+        case rawUserCount = "userCount"
     }
 }
