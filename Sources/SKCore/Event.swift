@@ -154,7 +154,7 @@ public class Event: Codable {
 //    public let bot: Bot?
 //    public let channel: Channel?
 //    public let comment: Comment?
-//    public let user: User?
+    public let user: UserOrUserId?
     public let file: File?
     public let message: Message?
     public let nestedMessage: Message?
