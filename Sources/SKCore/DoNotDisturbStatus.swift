@@ -28,11 +28,11 @@ public struct DoNotDisturbStatus: Codable {
     public var snoozeEnabled: Bool?
     public var snoozeEndtime: Int?
 
-    public init(status: [String: Any]?) {
-        enabled = status?["dnd_enabled"] as? Bool
-        nextDoNotDisturbStart = status?["next_dnd_start_ts"] as? Int
-        nextDoNotDisturbEnd = status?["next_dnd_end_ts"] as? Int
-        snoozeEnabled = status?["snooze_enabled"] as? Bool
-        snoozeEndtime = status?["snooze_endtime"] as? Int
+    enum CodingKeys: String, CodingKey {
+        case enabled = "dndEnabled"
+        case nextDoNotDisturbStart = "nextDndStartTs"
+        case nextDoNotDisturbEnd = "nextDndEndTs"
+        case snoozeEnabled
+        case snoozeEndtime
     }
 }
