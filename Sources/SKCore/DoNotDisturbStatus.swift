@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct DoNotDisturbStatus {
+public struct DoNotDisturbStatus: Codable {
     public var enabled: Bool?
     public var nextDoNotDisturbStart: Int?
     public var nextDoNotDisturbEnd: Int?

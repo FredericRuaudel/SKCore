@@ -28,6 +28,10 @@ struct ChannelContainer: Codable {
     let channel: Channel
 }
 
+struct UserContainer: Codable {
+    let user: User
+}
+
 final class SKCoreTests: XCTestCase {
     let jsonDecoder = JSONDecoder()
     
@@ -83,7 +87,7 @@ final class SKCoreTests: XCTestCase {
     func testFile() throws {
         let data = Helper.JSONData.file
         let file = try jsonDecoder.decode(File.self, from: data)
-        dump(file)
+//        dump(file)
         XCTAssertNotNil(file.id)
         XCTAssertNotNil(file.created)
         XCTAssertNotNil(file.name)
@@ -140,7 +144,7 @@ final class SKCoreTests: XCTestCase {
     func testIm() throws {
         let data = Helper.JSONData.im
         let im = try jsonDecoder.decode(Channel.self, from: data)
-        dump(im)
+//        dump(im)
         XCTAssertNotNil(im.id)
         XCTAssertNotNil(im.created)
         XCTAssertNotNil(im.user)
@@ -151,7 +155,7 @@ final class SKCoreTests: XCTestCase {
     func testMpim() throws {
         let data = Helper.JSONData.mpim
         let mpim = try jsonDecoder.decode(Channel.self, from: data)
-        dump(mpim)
+//        dump(mpim)
         XCTAssertNotNil(mpim.id)
         XCTAssertNotNil(mpim.created)
         XCTAssertNotNil(mpim.creator)
@@ -164,11 +168,28 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(mpim.members)
     }
     
-    func testUser() {
+    func testUser() throws {
         let data = Helper.JSONData.user
-        let json:[String:Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-        let user = User(user: json)
-        XCTAssertNotNil(user)
+        let userContainer = try jsonDecoder.decode(UserContainer.self, from: data)
+        let user = userContainer.user
+        dump(user)
+        XCTAssertNotNil(user.id)
+        XCTAssertNotNil(user.name)
+        XCTAssertNotNil(user.deleted)
+        XCTAssertNotNil(user.profile?.realName)
+        XCTAssertNotNil(user.profile?.email)
+        XCTAssertNotNil(user.profile?.image24)
+        XCTAssertNotNil(user.profile?.image32)
+        XCTAssertNotNil(user.profile?.image48)
+        XCTAssertNotNil(user.profile?.image72)
+        XCTAssertNotNil(user.profile?.image192)
+        XCTAssertNotNil(user.color)
+        XCTAssertNotNil(user.isBot)
+        XCTAssertNotNil(user.isAdmin)
+        XCTAssertNotNil(user.isOwner)
+        XCTAssertNotNil(user.isPrimaryOwner)
+        XCTAssertNotNil(user.isRestricted)
+        XCTAssertNotNil(user.isUltraRestricted)
     }
     
     func testUserGroup() {
