@@ -201,7 +201,7 @@ public class Event: Codable {
         case hidden
         case isStarred
         case hasPins
-        case pinnedTo = "pinnedTop"
+        case pinnedTo
         case fileID = "fileId"
         case presence
         case name
