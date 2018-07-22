@@ -23,11 +23,10 @@
 
 public struct Reaction: Equatable, Codable {
     public let name: String?
-    public var user: String?
-
-    public init(name: String, user: String) {
-        self.name = name
-        self.user = user
+    public var users: [String]?
+    @available(*, unavailable, message: "now fit the API by storing all users in \"users\" key")
+    public var user: String? {
+        return users?.first
     }
 
     public static func == (lhs: Reaction, rhs: Reaction) -> Bool {
