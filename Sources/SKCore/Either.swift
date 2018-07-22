@@ -34,3 +34,16 @@ extension Either: Encodable where L: Encodable, R: Encodable {
         }
     }
 }
+
+extension Either: Equatable where L: Equatable, R: Equatable {
+    public static func == (lhs: Either<L, R>, rhs: Either<L, R>) -> Bool {
+        switch (lhs, rhs) {
+        case let (.left(llval), .left(rlval)):
+            return llval == rlval
+        case let (.right(lrval), .right(rrval)):
+            return lrval == rrval
+        default:
+            return false
+        }
+    }
+}
