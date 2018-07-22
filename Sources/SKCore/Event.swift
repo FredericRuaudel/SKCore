@@ -147,11 +147,11 @@ public class Event: Codable {
     public let emailDomain: String?
     public let reaction: String?
     public let replyTo: Double?
-//    public let reactions: [[String: Any]]?
+    public let reactions: [Reaction]?
     public let edited: Edited?
     public let bot: Bot?
     public let channel: Expandable<Channel>?
-//    public let comment: Comment?
+    public let comment: Comment?
     public let user: Expandable<User>?
     public let file: File?
     public let message: Message?
