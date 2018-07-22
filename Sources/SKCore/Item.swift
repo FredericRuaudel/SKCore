@@ -26,7 +26,7 @@ public struct Item: Equatable, Codable {
     public let ts: String?
     public let channel: String?
     public let message: Message?
-    public let expandableFile: Expandable<File>?
+    private let expandableFile: Expandable<File>?
     public var file: File? {
         guard let expandableFile = expandableFile else { return nil }
         switch expandableFile {
@@ -36,7 +36,7 @@ public struct Item: Equatable, Codable {
             return file
         }
     }
-    public let expandableComment: Expandable<Comment>?
+    private let expandableComment: Expandable<Comment>?
     public var comment: Comment? {
         guard let expandableComment = expandableComment else { return nil }
         switch expandableComment {

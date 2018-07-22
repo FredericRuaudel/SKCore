@@ -150,7 +150,7 @@ public class Event: Codable {
     public let reactions: [Reaction]?
     public let edited: Edited?
     public let bot: Bot?
-    public let expandableChannel: Expandable<Channel>?
+    private let expandableChannel: Expandable<Channel>?
     public var channel: Channel? {
         guard let expandableChannel = expandableChannel else { return nil }
         switch expandableChannel {
@@ -160,7 +160,7 @@ public class Event: Codable {
             return channel
         }
     }
-    public let expandableComment: Expandable<Comment>?
+    private let expandableComment: Expandable<Comment>?
     public var comment: Comment? {
         guard let expandableComment = expandableComment else { return nil }
         switch expandableComment {
@@ -170,7 +170,7 @@ public class Event: Codable {
             return comment
         }
     }
-    public let expandableUser: Expandable<User>?
+    private let expandableUser: Expandable<User>?
     public var user: User? {
         guard let expandableUser = expandableUser else { return nil }
         switch expandableUser {

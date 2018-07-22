@@ -39,7 +39,7 @@ public struct Channel: Codable {
     public var purpose: Topic?
     public var isMember: Bool?
     public var lastRead: String?
-    public var expandableLatest: Expandable<Message>?
+    private var expandableLatest: Expandable<Message>?
     public var latest: Message? {
         guard let expandableLatest = expandableLatest else { return nil }
         switch expandableLatest {

@@ -38,7 +38,7 @@ public struct UserGroup: Codable {
     public var deletedBy: String?
 //    public var preferences: [String: Any]?
     public var users: [String]?
-    public var rawUserCount: String?
+    private var rawUserCount: String?
     public var userCount: Int? {
         guard let rawUserCount = rawUserCount else { return nil }
         return Int(rawUserCount)
