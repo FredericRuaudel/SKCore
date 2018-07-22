@@ -32,12 +32,6 @@ public struct Bot: Codable {
     public var name: String?
     public var icons: Icons?
 
-//    public init(bot: [String: Any]?) {
-//        id = bot?["id"] as? String
-//        name = bot?["name"] as? String
-//        icons = bot?["icons"] as? [String: Any]
-//    }
-
 //    public init(botUser: [String: Any]?) {
 //        id = botUser?["bot_user_id"] as? String
 //        botToken = botUser?["bot_access_token"] as? String
