@@ -26,38 +26,44 @@ public struct Item: Equatable, Codable {
     public let ts: String?
     public let channel: String?
     public let message: Message?
-    public let file: File?
-//    public let comment: Comment?
-    public let fileCommentID: String?
-
-//    public init(item: [String: Any]?) {
-//        type = item?["type"] as? String
-//        ts = item?["ts"] as? String
-//        channel = item?["channel"] as? String
-//        message = Message(dictionary: item?["message"] as? [String: Any])
-//
-//        // Comment and File can come across as Strings or Dictionaries
-//        if let commentDictionary = item?["comment"] as? [String: Any] {
-//            comment = Comment(comment: commentDictionary)
-//        } else {
-//            comment = Comment(id: item?["comment"] as? String)
-//        }
-//
-//        if let fileDictionary = item?["file"] as? [String: Any] {
-//            file = File(file: fileDictionary)
-//        } else {
-//            file = File(id: item?["file"] as? String)
-//        }
-//
-//        fileCommentID = item?["file_comment"] as? String
-//    }
+    public let expandableFile: Expandable<File>?
+    public var file: File? {
+        guard let expandableFile = expandableFile else { return nil }
+        switch expandableFile {
+        case .left(let id):
+            return File(id: id)
+        case .right(let file):
+            return file
+        }
+    }
+    public let expandableComment: Expandable<Comment>?
+    public var comment: Comment? {
+        guard let expandableComment = expandableComment else { return nil }
+        switch expandableComment {
+        case .left(let id):
+            return Comment(id: id)
+        case .right(let comment):
+            return comment
+        }
+    }
+    public var fileCommentID: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case type
+        case ts
+        case channel
+        case message
+        case expandableFile = "file"
+        case expandableComment = "comment"
+        case fileCommentID = "file_comment"
+    }
 
     public static func == (lhs: Item, rhs: Item) -> Bool {
         return
             lhs.type == rhs.type &&
             lhs.channel == rhs.channel &&
-            lhs.file == rhs.file &&
-//            lhs.comment == rhs.comment &&
+            lhs.expandableFile == rhs.expandableFile &&
+            lhs.expandableComment == rhs.expandableComment &&
             lhs.message == rhs.message
     }
 }
