@@ -148,7 +148,7 @@ public class Event: Codable {
     public let reaction: String?
     public let replyTo: Double?
 //    public let reactions: [[String: Any]]?
-//    public let edited: Edited?
+    public let edited: Edited?
     public let bot: Bot?
     public let channel: Expandable<Channel>?
 //    public let comment: Comment?
@@ -157,7 +157,7 @@ public class Event: Codable {
     public let message: Message?
     public let nestedMessage: Message?
     public let itemUser: String?
-//    public let item: Item?
+    public let item: Item?
     public let dndStatus: DoNotDisturbStatus?
     public let subteam: UserGroup?
     public let subteamID: String?
