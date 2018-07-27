@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Attachment {
+public struct Attachment: Codable {
     public let fallback: String?
     public let callbackID: String?
     public let type: String?
@@ -34,35 +34,13 @@ public struct Attachment {
     public let titleLink: String?
     public let text: String?
     public let fields: [AttachmentField]?
-    public let actions: [Action]?
+//    public let actions: [Action]?
     public let imageURL: String?
     public let thumbURL: String?
     public let footer: String?
     public let footerIcon: String?
     public let ts: Int?
     public let markdownEnabledFields: Set<AttachmentTextField>?
-
-    public init(attachment: [String: Any]?) {
-        fallback = attachment?["fallback"] as? String
-        callbackID = attachment?["callback_id"] as? String
-        type = attachment?["attachment_type"] as? String
-        color = attachment?["color"] as? String
-        pretext = attachment?["pretext"] as? String
-        authorName = attachment?["author_name"] as? String
-        authorLink = attachment?["author_link"] as? String
-        authorIcon = attachment?["author_icon"] as? String
-        title = attachment?["title"] as? String
-        titleLink = attachment?["title_link"] as? String
-        text = attachment?["text"] as? String
-        imageURL = attachment?["image_url"] as? String
-        thumbURL = attachment?["thumb_url"] as? String
-        footer = attachment?["footer"] as? String
-        footerIcon = attachment?["footer_icon"] as? String
-        ts = attachment?["ts"] as? Int
-        fields = (attachment?["fields"] as? [[String: Any]])?.map { AttachmentField(field: $0) }
-        actions = (attachment?["actions"] as? [[String: Any]])?.map { Action(action: $0) }
-        markdownEnabledFields = (attachment?["mrkdwn_in"] as? [String]).map { Set($0.flatMap(AttachmentTextField.init)) }
-    }
 
     public init(
         fallback: String,
@@ -97,7 +75,7 @@ public struct Attachment {
         self.titleLink = titleLink
         self.text = text
         self.fields = fields
-        self.actions = actions
+//        self.actions = actions
         self.imageURL = imageURL
         self.thumbURL = thumbURL
         self.footer = footer
@@ -105,37 +83,35 @@ public struct Attachment {
         self.ts = ts
         self.markdownEnabledFields = markdownFields
     }
-
-    public var dictionary: [String: Any] {
-        var attachment = [String: Any]()
-        attachment["fallback"] = fallback
-        attachment["callback_id"] = callbackID
-        attachment["attachment_type"] = type
-        attachment["color"] = color
-        attachment["pretext"] = pretext
-        attachment["author_name"] = authorName
-        attachment["author_link"] = authorLink
-        attachment["author_icon"] = authorIcon
-        attachment["title"] = title
-        attachment["title_link"] = titleLink
-        attachment["text"] = text
-        attachment["fields"] = fields?.map { $0.dictionary }
-        attachment["actions"] = actions?.map { $0.dictionary }
-        attachment["image_url"] = imageURL
-        attachment["thumb_url"] = thumbURL
-        attachment["footer"] = footer
-        attachment["footer_icon"] = footerIcon
-        attachment["ts"] = ts
-        attachment["mrkdwn_in"] = markdownEnabledFields?.map { $0.rawValue }
-        return attachment
+    
+    enum CodingKeys: String, CodingKey {
+        case fallback
+        case callbackID = "callbackId"
+        case type = "attachmentType"
+        case color
+        case pretext
+        case authorName
+        case authorLink
+        case authorIcon
+        case title
+        case titleLink
+        case text
+        case fields
+//        case actions
+        case imageURL = "imageUrl"
+        case thumbURL = "thumbUrl"
+        case footer
+        case footerIcon
+        case ts
+        case markdownEnabledFields = "mrkdwnIn"
     }
 }
 
-public enum AttachmentColor: String {
+public enum AttachmentColor: String, Codable {
     case good, warning, danger
 }
 
-public enum AttachmentTextField: String {
+public enum AttachmentTextField: String, Codable {
     case fallback = "fallback"
     case pretext = "pretext"
     case authorName = "author_name"
