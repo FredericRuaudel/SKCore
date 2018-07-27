@@ -37,11 +37,7 @@ struct MessageListContainer: Codable {
 }
 
 final class SKCoreTests: XCTestCase {
-    let jsonDecoder = JSONDecoder()
-    
-    override func setUp() {
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-    }
+    let jsonDecoder = JSONDecoder.JSONSKCoreDecoder
     
     func testEvents() throws {
         let data = Helper.JSONData.events
