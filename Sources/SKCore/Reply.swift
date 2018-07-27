@@ -21,12 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Reply {
+public struct Reply: Codable {
     public let user: String?
     public let ts: String?
-
-    public init(reply: [String: Any]?) {
-        user = reply?["user"] as? String
-        ts = reply?["ts"] as? String
-    }
 }

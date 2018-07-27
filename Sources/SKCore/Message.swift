@@ -28,7 +28,7 @@ public final class Message: Equatable, Codable {
     public var threadTs: String?
     public let parentUserId: String?
     public var replyCount: Int?
-//    public var replies: [Reply]?
+    public var replies: [Reply]?
     public let user: String?
     public let channel: String?
     public var hidden: Bool?
