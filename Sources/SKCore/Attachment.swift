@@ -34,7 +34,7 @@ public struct Attachment: Codable {
     public let titleLink: String?
     public let text: String?
     public let fields: [AttachmentField]?
-//    public let actions: [Action]?
+    public let actions: [Action]?
     public let imageURL: String?
     public let thumbURL: String?
     public let footer: String?
@@ -75,7 +75,7 @@ public struct Attachment: Codable {
         self.titleLink = titleLink
         self.text = text
         self.fields = fields
-//        self.actions = actions
+        self.actions = actions
         self.imageURL = imageURL
         self.thumbURL = thumbURL
         self.footer = footer
@@ -97,7 +97,7 @@ public struct Attachment: Codable {
         case titleLink
         case text
         case fields
-//        case actions
+        case actions
         case imageURL = "imageUrl"
         case thumbURL = "thumbUrl"
         case footer

@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Action {
+public struct Action: Codable {
     public let name: String?
     public let text: String?
     public let type: String?
@@ -30,17 +30,6 @@ public struct Action {
     public let confirm: Confirm?
     public let options: [Option]?
     public let dataSource: DataSource?
-
-    public init(action: [String: Any]?) {
-        name = action?["name"] as? String
-        text = action?["text"] as? String
-        type = action?["type"] as? String
-        value = action?["value"] as? String
-        style = ActionStyle(rawValue: action?["style"] as? String ?? "")
-        confirm = Confirm(confirm:action?["confirm"] as? [String: Any])
-        options = (action?["options"] as? [[String: Any]])?.map { Option(option: $0) }
-        dataSource = DataSource(rawValue: action?["data_source"] as? String ?? "")
-    }
 
     public init(name: String, text: String, type: String = "button", style: ActionStyle = .defaultStyle, value: String? = nil,
                 confirm: Confirm? = nil, options: [Option]? = nil, dataSource: DataSource? = nil) {
@@ -54,31 +43,11 @@ public struct Action {
         self.dataSource = dataSource
     }
 
-    public var dictionary: [String: Any] {
-        var dict = [String: Any]()
-        dict["name"] = name
-        dict["text"] = text
-        dict["type"] = type
-        dict["value"] = value
-        dict["style"] = style?.rawValue
-        dict["confirm"] = confirm?.dictionary
-        dict["options"] = options?.map { $0.dictionary }
-        dict["data_source"] = dataSource?.rawValue
-        return dict
-    }
-
-    public struct Confirm {
+    public struct Confirm: Codable {
         public let title: String?
         public let text: String?
         public let okText: String?
         public let dismissText: String?
-
-        public init(confirm: [String: Any]?) {
-            title = confirm?["title"] as? String
-            text = confirm?["text"] as? String
-            okText = confirm?["ok_text"] as? String
-            dismissText = confirm?["dismiss_text"] as? String
-        }
 
         public init(text: String, title: String? = nil, okText: String? = nil, dismissText: String? = nil) {
             self.text = text
@@ -86,53 +55,32 @@ public struct Action {
             self.okText = okText
             self.dismissText = dismissText
         }
-
-        public var dictionary: [String: Any] {
-            var dict = [String: Any]()
-            dict["title"] = title
-            dict["text"] = text
-            dict["ok_text"] = okText
-            dict["dismiss_text"] = dismissText
-            return dict
-        }
     }
 
-    public struct Option {
+    public struct Option: Codable {
         public let text: String?
         public let value: String?
-
-        public init(option: [String: Any]?) {
-            text = option?["text"] as? String
-            value = option?["value"] as? String
-        }
 
         public init(text: String, value: String) {
             self.text = text
             self.value = value
         }
-
-        public var dictionary: [String: Any] {
-            var dict = [String: Any]()
-            dict["text"] = text
-            dict["value"] = value
-            return dict
-        }
     }
 
-    public enum DataSource: String {
+    public enum DataSource: String, Codable {
         case users
         case channels
         case conversations
     }
 }
 
-public enum ActionStyle: String {
+public enum ActionStyle: String, Codable {
     case defaultStyle = "default"
     case primary = "primary"
     case danger = "danger"
 }
 
-public enum MessageResponseType: String {
+public enum MessageResponseType: String, Codable {
     case inChannel = "in_channel"
     case ephemeral = "ephemeral"
 }
