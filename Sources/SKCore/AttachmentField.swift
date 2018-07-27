@@ -21,28 +21,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct AttachmentField {
+public struct AttachmentField: Codable {
     public let title: String?
     public let value: String?
     public let short: Bool?
-
-    public init(field: [String: Any]?) {
-        title = field?["title"] as? String
-        value = field?["value"] as? String
-        short = field?["short"] as? Bool
-    }
 
     public init(title: String?, value: String?, short: Bool? = nil) {
         self.title = title
         self.value = value
         self.short = short
-    }
-
-    public var dictionary: [String: Any] {
-        var field = [String: Any]()
-        field["title"] = title
-        field["value"] = value
-        field["short"] = short
-        return field
     }
 }
