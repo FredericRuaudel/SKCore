@@ -21,29 +21,4 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct CustomProfile {
-    public var fields = [String: CustomProfileField]()
-
-    public init(profile: [String: Any]?) {
-        if let eventFields = profile?["fields"] as? [Any] {
-            for field in eventFields {
-                var cpf: CustomProfileField?
-                if let fieldDictionary = field as? [String: Any] {
-                    cpf = CustomProfileField(field: fieldDictionary)
-                } else {
-                    cpf = CustomProfileField(id: field as? String)
-                }
-                if let id = cpf?.id { fields[id] = cpf }
-            }
-        }
-    }
-
-    public init(customFields: [String: Any]?) {
-        if let customFields = customFields {
-            for key in customFields.keys {
-                let cpf = CustomProfileField(field: customFields[key] as? [String: Any])
-                self.fields[key] = cpf
-            }
-        }
-    }
-}
+public typealias CustomProfile = [String: CustomProfileField]
