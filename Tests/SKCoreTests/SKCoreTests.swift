@@ -105,7 +105,7 @@ final class SKCoreTests: XCTestCase {
     func testFile() throws {
         let data = Helper.JSONData.file
         let file = try jsonDecoder.decode(File.self, from: data)
-        dump(file)
+//        dump(file)
         XCTAssertNotNil(file.id)
         XCTAssertNotNil(file.created)
         XCTAssertNotNil(file.name)
@@ -215,13 +215,18 @@ final class SKCoreTests: XCTestCase {
         XCTAssertNotNil(user.id)
         XCTAssertNotNil(user.name)
         XCTAssertNotNil(user.deleted)
+        XCTAssertNotNil(user.profile?.firstName)
+        XCTAssertNotNil(user.profile?.lastName)
         XCTAssertNotNil(user.profile?.realName)
         XCTAssertNotNil(user.profile?.email)
+        XCTAssertNotNil(user.profile?.phone)
         XCTAssertNotNil(user.profile?.image24)
         XCTAssertNotNil(user.profile?.image32)
         XCTAssertNotNil(user.profile?.image48)
         XCTAssertNotNil(user.profile?.image72)
         XCTAssertNotNil(user.profile?.image192)
+        XCTAssertNotNil(user.profile?.image512)
+        XCTAssertNotNil(user.profile?.image1024)
         XCTAssertNotNil(user.color)
         XCTAssertNotNil(user.isBot)
         XCTAssertNotNil(user.isAdmin)
@@ -237,7 +242,7 @@ final class SKCoreTests: XCTestCase {
     func testUserGroup() throws {
         let data = Helper.JSONData.usergroup
         let userGroup = try jsonDecoder.decode(UserGroup.self, from: data)
-//        dump(userGroup)
+        dump(userGroup)
         XCTAssertNotNil(userGroup.id)
         XCTAssertNotNil(userGroup.teamID)
         XCTAssertNotNil(userGroup.isUserGroup)
@@ -271,7 +276,7 @@ final class SKCoreTests: XCTestCase {
         let data = Helper.JSONData.messages
         let messagesContainer = try jsonDecoder.decode(MessageListContainer.self, from: data)
         let messages = messagesContainer.messages
-        dump(messages)
+//        dump(messages)
         
         XCTAssertEqual(messages.count, 4)
         for message in messages {
