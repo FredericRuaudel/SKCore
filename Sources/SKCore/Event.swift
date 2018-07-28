@@ -140,7 +140,7 @@ public class Event: Codable {
     public let fileID: String?
     public let presence: String?
     public let name: String?
-//    public let value: Any?
+    public let value: PreferenceValue?
     public let plan: String?
     public let url: String?
     public let domain: String?
@@ -188,7 +188,7 @@ public class Event: Codable {
     public let dndStatus: DoNotDisturbStatus?
     public let subteam: UserGroup?
     public let subteamID: String?
-//    public var profile: CustomProfile?
+    public var profile: CustomProfile?
     
     enum CodingKeys: String, CodingKey {
         case type
@@ -205,7 +205,7 @@ public class Event: Codable {
         case fileID = "fileId"
         case presence
         case name
-//        case value
+        case value
         case plan
         case url
         case domain
@@ -226,6 +226,6 @@ public class Event: Codable {
         case dndStatus
         case subteam
         case subteamID = "subteamId"
-//        case profile
+        case profile = "fields"
     }
 }

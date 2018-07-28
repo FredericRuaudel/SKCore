@@ -36,35 +36,13 @@ public struct UserGroup: Codable {
     public let createdBy: String?
     public var updatedBy: String?
     public var deletedBy: String?
-//    public var preferences: [String: Any]?
+    public var preferences: [String: PreferenceValue]?
     public var users: [String]?
     private var rawUserCount: String?
     public var userCount: Int? {
         guard let rawUserCount = rawUserCount else { return nil }
         return Int(rawUserCount)
     }
-
-//    public init(userGroup: [String: Any]?) {
-//        id = userGroup?["id"] as? String
-//        teamID = userGroup?["team_id"] as? String
-//        isUserGroup = userGroup?["is_usergroup"] as? Bool
-//        name = userGroup?["name"] as? String
-//        description = userGroup?["description"] as? String
-//        handle = userGroup?["handle"] as? String
-//        isExternal = userGroup?["is_external"] as? Bool
-//        dateCreated = userGroup?["date_create"] as? Int
-//        dateUpdated = userGroup?["date_update"] as? Int
-//        dateDeleted = userGroup?["date_delete"] as? Int
-//        autoType = userGroup?["auto_type"] as? String
-//        createdBy = userGroup?["created_by"] as? String
-//        updatedBy = userGroup?["updated_by"] as? String
-//        deletedBy = userGroup?["deleted_by"] as? String
-//        preferences = userGroup?["prefs"] as? [String: Any]
-//        users = userGroup?["users"] as? [String]
-//        if let count = userGroup?["user_count"] as? String {
-//            userCount = Int(count)
-//        }
-//    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -81,7 +59,7 @@ public struct UserGroup: Codable {
         case createdBy
         case updatedBy
         case deletedBy
-//        case preferences = "prefs"
+        case preferences = "prefs"
         case users
         case rawUserCount = "userCount"
     }
