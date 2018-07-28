@@ -23,20 +23,23 @@
 
 import Foundation
 
-public struct History {
-    public var latest: Date?
+public struct History: Codable {
+    private var rawLatest: String?
+    public var latest: Date? {
+        guard
+            let latestStr = rawLatest,
+            let latestDouble = Double(latestStr)
+        else {
+            return nil
+        }
+        return Date(timeIntervalSince1970: TimeInterval(latestDouble))
+    }
     public var messages = [Message]()
     public let hasMore: Bool?
 
-//    public init(history: [String: Any]?) {
-//        if let latestStr = history?["latest"] as? String, let latestDouble = Double(latestStr) {
-//            latest = Date(timeIntervalSince1970: TimeInterval(latestDouble))
-//        }
-//        if let msgs = history?["messages"] as? [[String: Any]] {
-//            for message in msgs {
-//                messages.append(Message(dictionary: message))
-//            }
-//        }
-//        hasMore = history?["has_more"] as? Bool
-//    }
+    enum CodingKeys: String, CodingKey {
+        case rawLatest = "lastest"
+        case messages
+        case hasMore
+    }
 }

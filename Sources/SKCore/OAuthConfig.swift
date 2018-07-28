@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct OAuthConfig {
+public struct OAuthConfig: Codable {
     public let clientID: String
     public let clientSecret: String
     public let state: String

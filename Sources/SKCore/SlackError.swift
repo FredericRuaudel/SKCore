@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public enum SlackError: String, Error {
+public enum SlackError: String, Error, Codable {
     case accountInactive = "account_inactive"
     case alreadyArchived = "already_archived"
     case alreadyInChannel = "already_in_channel"

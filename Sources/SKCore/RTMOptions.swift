@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct RTMOptions {
+public struct RTMOptions: Codable {
     public let batchPresenceAware: Bool
     public let mpimAware: Bool
     public let noLatest: Bool

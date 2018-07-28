@@ -21,26 +21,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct Team {
+public struct Team: Codable {
     public let id: String?
     public var name: String?
     public var domain: String?
     public var emailDomain: String?
     public var messageEditWindowMinutes: Int?
     public var overStorageLimit: Bool?
-    public var prefs: [String: Any]?
+    public var prefs: [String: PreferenceValue]?
     public var plan: String?
     public var icon: TeamIcon?
-
-    public init(team: [String: Any]?) {
-        id = team?["id"] as? String
-        name = team?["name"] as? String
-        domain = team?["domain"] as? String
-        emailDomain = team?["email_domain"] as? String
-        messageEditWindowMinutes = team?["msg_edit_window_mins"] as? Int
-        overStorageLimit = team?["over_storage_limit"] as? Bool
-        prefs = team?["prefs"] as? [String: Any]
-        plan = team?["plan"] as? String
-        icon = TeamIcon(icon: team?["icon"] as? [String: Any])
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case domain
+        case emailDomain
+        case messageEditWindowMinutes = "msgEditWindowMins"
+        case overStorageLimit
+        case prefs
+        case plan
+        case icon
     }
 }

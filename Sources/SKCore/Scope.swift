@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public enum Scope: String {
+public enum Scope: String, Codable {
     case channelsHistory = "channels:history"
     case channelsRead = "channels:read"
     case channelsWrite = "channels:write"
@@ -65,7 +65,8 @@ public enum Scope: String {
     case identify = "identify"
     case client = "client"
     case admin = "admin"
-    //Deprecated
+    @available(*, deprecated)
     case read = "read"
+    @available(*, deprecated)
     case post = "post"
 }
