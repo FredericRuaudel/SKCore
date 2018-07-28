@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public struct CustomProfileField {
+public struct CustomProfileField: Codable {
     public var id: String?
     public var alt: String?
     public var value: String?
@@ -32,19 +32,6 @@ public struct CustomProfileField {
     public var ordering: Int?
     public var possibleValues: [String]?
     public var type: String?
-
-    public init(field: [String: Any]?) {
-        id = field?["id"] as? String
-        alt = field?["alt"] as? String
-        value = field?["value"] as? String
-        hidden = field?["is_hidden"] as? Bool
-        hint = field?["hint"] as? String
-        label = field?["label"] as? String
-        options = field?["options"] as? String
-        ordering = field?["ordering"] as? Int
-        possibleValues = field?["possible_values"] as? [String]
-        type = field?["type"] as? String
-    }
 
     public init(id: String?) {
         self.id = id
@@ -61,5 +48,18 @@ public struct CustomProfileField {
         ordering = profile?.ordering != nil ? profile?.ordering : ordering
         possibleValues = profile?.possibleValues != nil ? profile?.possibleValues : possibleValues
         type = profile?.type != nil ? profile?.type : type
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case alt
+        case value
+        case hidden = "isHidden"
+        case hint
+        case label
+        case options
+        case ordering
+        case possibleValues
+        case type
     }
 }
